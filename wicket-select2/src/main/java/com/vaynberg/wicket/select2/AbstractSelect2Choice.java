@@ -26,6 +26,8 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.http.WebRequest;
 import org.apache.wicket.request.http.WebResponse;
+import org.apache.wicket.request.http.WebResponse.CacheScope;
+import org.apache.wicket.util.time.Duration;
 import org.json.JSONException;
 import org.json.JSONWriter;
 
@@ -227,6 +229,12 @@ abstract class AbstractSelect2Choice<T, M> extends HiddenField<M> implements IRe
 	WebResponse webResponse = (WebResponse) rc.getResponse();
 	webResponse.setContentType("application/json");
 
+	//allow to cache results
+	AjaxSettings ajax = getSettings().getAjax();
+	if(ajax != null && ajax.isCache()) {
+	    webResponse.enableCaching(Duration.MAXIMUM, CacheScope.PRIVATE);
+	}
+	
 	OutputStreamWriter out = new OutputStreamWriter(webResponse.getOutputStream(), getRequest().getCharset());
 	JSONWriter json = new JSONWriter(out);
 

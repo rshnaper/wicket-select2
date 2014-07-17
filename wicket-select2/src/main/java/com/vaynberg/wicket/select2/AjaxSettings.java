@@ -32,7 +32,11 @@ public final class AjaxSettings implements Serializable {
     private String results;
     /** whether or not to use traditional parameter encoding. */
     private Boolean traditional;
-
+    
+    /** whether to cache query data */
+    private boolean cache;
+    private String jsonpCallback;
+    
     void toJson(JSONWriter writer) throws JSONException {
 	writer.object();
 	Json.writeFunction(writer, "data", data);
@@ -41,6 +45,8 @@ public final class AjaxSettings implements Serializable {
 	Json.writeFunction(writer, "results", results);
 	Json.writeObject(writer, "url", url);
 	Json.writeObject(writer, "traditional", traditional);
+	Json.writeObject(writer, "cache", cache);
+	Json.writeObject(writer, "jsonpCallback", jsonpCallback);
 	writer.endObject();
     }
 
@@ -91,5 +97,22 @@ public final class AjaxSettings implements Serializable {
     public void setTraditional(boolean traditional) {
         this.traditional = traditional;
     }
+
+    public boolean isCache() {
+        return cache;
+    }
+
+    public void setCache(boolean cache) {
+        this.cache = cache;
+    }
+
+    public String getJsonpCallback() {
+        return jsonpCallback;
+    }
+
+    public void setJsonpCallback(String jsonpCallback) {
+        this.jsonpCallback = jsonpCallback;
+    }
+    
     
 }

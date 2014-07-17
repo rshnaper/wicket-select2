@@ -1,4 +1,12 @@
 .project
 .classpath
 target
+.settings
 
+*.prefs
+*.jsdtscope
+*.prefs
+*.prefs
+wicket-select2-examples/.settings/org.eclipse.jdt.core.prefs
+wicket-select2-examples/.settings/org.eclipse.jdt.core.prefs
+wicket-select2/.settings/org.eclipse.jdt.core.prefs
